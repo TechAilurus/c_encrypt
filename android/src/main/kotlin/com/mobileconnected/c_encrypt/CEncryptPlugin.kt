@@ -38,6 +38,12 @@ class CEncryptPlugin : FlutterPlugin, MethodCallHandler {
       "getAppVersionName" -> {
         result.success(EncryptJNI.versionNameFromJNI(context))
       }
+      "decryptByAES" -> {
+        result.success(EncryptJNI.decryptFromJNI(context,call.arguments<String>()!!))
+      }
+      "encryptByAES" -> {
+        result.success(EncryptJNI.encryptFromJNI(context,call.arguments<String>()!!))
+      }
       else -> {
         result.notImplemented()
       }

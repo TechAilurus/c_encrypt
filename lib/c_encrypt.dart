@@ -17,4 +17,12 @@ class CEncrypt {
   Future<String?> getAppVersionName() {
     return CEncryptPlatform.instance.getAppVersionName();
   }
+
+  Future<String?> decryptByAES(String content) {
+    return CEncryptPlatform.instance.decryptByAES(content);
+  }
+
+  Future<String?> encryptByAES(String content) {
+    return CEncryptPlatform.instance.encryptByAES(content);
+  }
 }

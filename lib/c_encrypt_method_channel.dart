@@ -32,4 +32,15 @@ class MethodChannelCEncrypt extends CEncryptPlatform {
     final appVersionName = await methodChannel.invokeMethod<String>('getAppVersionName');
     return appVersionName;
   }
+
+  @override
+  Future<String?> decryptByAES(String content) async {
+    final decryptedStr = await methodChannel.invokeMethod<String>('decryptByAES',content);
+    return decryptedStr;
+  }
+  @override
+  Future<String?> encryptByAES(String content) async {
+    final encryptedStr = await methodChannel.invokeMethod<String>('encryptByAES',content);
+    return encryptedStr;
+  }
 }

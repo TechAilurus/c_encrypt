@@ -12,4 +12,8 @@ object EncryptJNI {
   external fun signatureFromJNI(context: Context): String
 
   external fun versionNameFromJNI(context: Context): String
+
+  external fun decryptFromJNI(context: Context, content: String): String
+
+  external fun encryptFromJNI(context: Context, content: String): String
 }

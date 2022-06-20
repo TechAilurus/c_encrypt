@@ -38,4 +38,12 @@ abstract class CEncryptPlatform extends PlatformInterface {
   Future<String?> getAppVersionName() {
     throw UnimplementedError('getAppVersionName() has not been implemented.');
   }
+
+  Future<String?> decryptByAES(String content) async {
+    throw UnimplementedError('decryptByAES() has not been implemented.');
+  }
+
+  Future<String?> encryptByAES(String content) async {
+    throw UnimplementedError('encryptByAES() has not been implemented.');
+  }
 }
