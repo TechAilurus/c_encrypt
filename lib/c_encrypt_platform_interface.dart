@@ -46,4 +46,8 @@ abstract class CEncryptPlatform extends PlatformInterface {
   Future<String?> encryptByAES(String content) async {
     throw UnimplementedError('encryptByAES() has not been implemented.');
   }
+
+  Future<String?> generateLoginNonce(String content) async {
+    throw UnimplementedError('generateLoginNonce() has not been implemented.');
+  }
 }

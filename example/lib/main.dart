@@ -25,6 +25,7 @@ class _MyAppState extends State<MyApp> {
   String _appVersionName = "Unknown";
   String _encryptedStr = 'Unknown';
   String _decryptedStr = 'Unknown';
+  String _loginNonceStr = "Unknown";
 
   final _cEncryptPlugin = CEncrypt();
 
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
     String appVersionName;
     String encryptedStr;
     String decryptedStr;
+    String loginNonce;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
@@ -51,6 +53,7 @@ class _MyAppState extends State<MyApp> {
       appVersionName = await _cEncryptPlugin.getAppVersionName() ?? 'Unknown app version name';
       encryptedStr = await _cEncryptPlugin.encryptByAES(strToBeEncrypt) ?? 'Unknown encrypt str';
       decryptedStr = await _cEncryptPlugin.decryptByAES(strToBeDecrypt) ?? 'Unknown decrypt str';
+      loginNonce = await _cEncryptPlugin.generateLoginNonce("Hello World") ?? "null returned";
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
       appId = 'Failed to get app id';
@@ -58,6 +61,7 @@ class _MyAppState extends State<MyApp> {
       appVersionName = 'Failed to get app version name';
       encryptedStr = 'Failed to encrypt str';
       decryptedStr = 'Failed to decrypt str';
+      loginNonce = "Failed to get login nonce";
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -72,6 +76,7 @@ class _MyAppState extends State<MyApp> {
       _appVersionName = appVersionName;
       _encryptedStr = encryptedStr;
       _decryptedStr = decryptedStr;
+      _loginNonceStr = loginNonce;
     });
   }
 
@@ -89,6 +94,16 @@ class _MyAppState extends State<MyApp> {
               Text('Application ID is:\n $_appId\n'),
               Text('Application Signature is:\n $_appSignature\n'),
               Text('Application Version Name is:\n $_appVersionName\n'),
+              GestureDetector(
+                onTap: () {
+                  initPlatformState();
+                  setState(() {});
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text('login nonce is :\n $_loginNonceStr\n length is ${_loginNonceStr.length}'),
+                ),
+              ),
               const SizedBox(width: double.infinity, height: 10),
               const Text("加密前文字：$strToBeEncrypt"),
               const SizedBox(width: double.infinity, height: 10),

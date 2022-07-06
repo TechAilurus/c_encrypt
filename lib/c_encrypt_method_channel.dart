@@ -11,13 +11,13 @@ class MethodChannelCEncrypt extends CEncryptPlatform {
 
   @override
   Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
+    final version = await methodChannel.invokeMethod<String?>('getPlatformVersion');
     return version;
   }
 
   @override
   Future<String?> getAppId() async {
-    final appId = await methodChannel.invokeMethod<String>('getAppId');
+    final appId = await methodChannel.invokeMethod<String?>('getAppId');
     return appId;
   }
 
@@ -35,12 +35,18 @@ class MethodChannelCEncrypt extends CEncryptPlatform {
 
   @override
   Future<String?> decryptByAES(String content) async {
-    final decryptedStr = await methodChannel.invokeMethod<String>('decryptByAES',content);
+    final decryptedStr = await methodChannel.invokeMethod<String>('decryptByAES', content);
     return decryptedStr;
   }
+
   @override
   Future<String?> encryptByAES(String content) async {
-    final encryptedStr = await methodChannel.invokeMethod<String>('encryptByAES',content);
+    final encryptedStr = await methodChannel.invokeMethod<String>('encryptByAES', content);
     return encryptedStr;
+  }
+
+  Future<String?> generateLoginNonce(String content) async {
+    final loginNonce = await methodChannel.invokeMethod<String?>('generateLoginNonce', content);
+    return loginNonce;
   }
 }

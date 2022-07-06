@@ -44,6 +44,9 @@ class CEncryptPlugin : FlutterPlugin, MethodCallHandler {
       "encryptByAES" -> {
         result.success(EncryptJNI.encryptFromJNI(context,call.arguments<String>()!!))
       }
+      "generateLoginNonce" -> {
+        result.success(EncryptJNI.generateLoginNonce(context,call.arguments<String>()!!))
+      }
       else -> {
         result.notImplemented()
       }

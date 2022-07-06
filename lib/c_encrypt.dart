@@ -25,4 +25,8 @@ class CEncrypt {
   Future<String?> encryptByAES(String content) {
     return CEncryptPlatform.instance.encryptByAES(content);
   }
+
+  Future<String?> generateLoginNonce(String content) {
+    return CEncryptPlatform.instance.generateLoginNonce(content);
+  }
 }
